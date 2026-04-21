@@ -1,10 +1,11 @@
 ﻿=== Polls for Contact Form 7 ===
-Contributors: Amisha
+Contributors: rajkakadiya, rvadhel
+Donate link: https://paypal.me/rvadhel
 Tags: Polls, Polls for Contact Form, Contact Form Polls
 Requires PHP: 5.2.4
 Requires at least: 3.0.1
 Tested up to: 6.4.1
-Stable tag: 1.0
+Stable tag: 1.8
 
 == Description ==
 
@@ -47,9 +48,45 @@ For Polls settings go to Contact form 7-> Polls Settings.
 For View Polls result go to Contact form 7-> Polls Result.
 
 
+== Screenshots ==
+
+1. Plugin listing page
+2. Contact form 7 -> Form tab
+3. Contact form 7 -> Polls setting tab
+4. Contact form 7 -> Polls result tab
+5. Display polls result
+
 == Changelog ==
+= 1.8 =
+ Fix Bug
+ Added auto updated function
+
+ = 1.7 =
+ Fixed bug.
+ Tested with latest version of Contact Form 7 
+
+= 1.6 =
+ Tested up to WordPress version 6.4.1 
+ Tested with latest version of Contact Form 7 
+
+= 1.5 =
+Shorted poll results by vote count
+
+= 1.4 =
+ Tested up to wp version 6.2.2
+
+= 1.3 =
+ Added : Limit per Mail 
+ Added : Reset Polls Data
+
+= 1.2 =
+ Tested up to wp version 6.0.1
+
+= 1.1 =
+ Fixed bug.
 
 = 1.0 =
+
  Initial release
 
 

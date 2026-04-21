@@ -2,8 +2,9 @@
 /*
 Plugin Name: Polls For Contact Form 7
 Description: This Plugin allows you to create polls for contact form 7 with many form fields.
-Author: Amisha
-Version: 1.0
+Author: Geek Code Lab
+Version: 1.8
+Author URI: https://geekcodelab.com/
 Text Domain : polls-for-contact-form-7
 */
 if (!defined('ABSPATH')) exit;
@@ -22,11 +23,14 @@ if (!defined( 'CF7P_PLUGIN_DIR_PATH' ))
 if (!defined( 'CF7P_PLUGIN_URL' ))
 	define( 'CF7P_PLUGIN_URL', plugins_url() . '/' . basename(dirname(__FILE__)) );
 
+require(CF7P_PLUGIN_DIR_PATH . 'updater/updater.php');
+
 register_activation_hook( __FILE__, 'cf7p_plugin_activate' );
 function cf7p_plugin_activate() {
     global $wpdb;
     $db_table_name = $wpdb->prefix . 'cf7p_options';  // table name
     $charset_collate = $wpdb->get_charset_collate();
+    cf7p_updater_activate();
     if($wpdb->get_var( "show tables like '$db_table_name'" ) != $db_table_name ){
         $sql = "CREATE TABLE " . $db_table_name . " (
             id bigint(20) NOT NULL AUTO_INCREMENT,
@@ -38,6 +42,7 @@ function cf7p_plugin_activate() {
         dbDelta( $sql );
     }
 }
+add_action('upgrader_process_complete', 'cf7p_updater_activate'); // remove  transient  on plugin  update
 
 if ( ! function_exists( 'cf7p_install_contact_form_7_admin_notice' ) ) {
 	/**
@@ -71,6 +76,9 @@ add_action( 'plugins_loaded', 'cf7p_self_constructor' );
 $plugin = plugin_basename(__FILE__);
 add_filter( "plugin_action_links_$plugin", 'cf7p_add_plugin_settings_link');
 function cf7p_add_plugin_settings_link( $links ) {
+	$support_link = '<a href="https://geekcodelab.com/contact/" target="_blank" >' . __( 'Support', 'polls-for-contact-form-7' ) . '</a>';
+	array_unshift( $links, $support_link );
+
 	$setting_link = '<a href="'. admin_url('admin.php?page=wpcf7') .'">' . __( 'Settings', 'polls-for-contact-form-7' ) . '</a>';
 	array_unshift( $links, $setting_link );
 
